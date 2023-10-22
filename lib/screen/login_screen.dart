@@ -62,16 +62,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 25),
 
-            Container(
-              child: Text("login"),
-              width: double.infinity,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              decoration: const ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+            InkWell(
+              onTap: () => print("login tapped"),
+              child: Container(
+                child: Text("login"),
+                width: double.infinity,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                decoration: const ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                  color: blueColor,
                 ),
-                color: blueColor,
               ),
             ),
             const SizedBox(
@@ -90,9 +93,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Text("Create New account"),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Text("Create New account"),
+                GestureDetector(
+                  onTap: () => print("new_account created"),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: Text("Create New account"),
+                  ),
                 ),
               ],
             )
