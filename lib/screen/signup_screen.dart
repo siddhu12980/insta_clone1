@@ -1,6 +1,4 @@
-import 'dart:ffi';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +15,7 @@ class signupScreen extends StatefulWidget {
   State<signupScreen> createState() => _signupScreenState();
 }
 
+// ignore: camel_case_types
 class _signupScreenState extends State<signupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -52,12 +51,13 @@ class _signupScreenState extends State<signupScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
-                child: Container(),
                 flex: 1,
+                child: Container(),
               ),
               SvgPicture.asset(
                 'assets/ic_instagram.svg',
-                color: Colors.white,
+                // ignore: deprecated_member_use
+                color: Colors.white, //depreciated
                 height: 62,
               ),
               const SizedBox(
@@ -120,15 +120,16 @@ class _signupScreenState extends State<signupScreen> {
               InkWell(
                 onTap: () async {
                   String res = await AuthMethods().signupuser(
-                      email: _emailController.text,
-                      username: _usernamecontroller.text,
-                      password: _passwordController.text,
-                      bio: _biocontroller.text,
-                      file: _image!);
+                    email: _emailController.text,
+                    username: _usernamecontroller.text,
+                    password: _passwordController.text,
+                    bio: _biocontroller.text,
+                    // file: _image!
+                  );
+                  // ignore: avoid_print
                   print(res);
                 },
                 child: Container(
-                  child: Text("Signup"),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 14),
@@ -138,6 +139,7 @@ class _signupScreenState extends State<signupScreen> {
                     ),
                     color: blueColor,
                   ),
+                  child: const Text("Signup"),
                 ),
               ),
               const SizedBox(
@@ -145,22 +147,23 @@ class _signupScreenState extends State<signupScreen> {
               ),
 
               Flexible(
-                child: Container(),
                 flex: 1,
+                child: Container(),
               ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: Text("Already,Have an account?"),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: const Text("Already,Have an account?"),
                   ),
                   GestureDetector(
+                    // ignore: avoid_print
                     onTap: () => print("new_account created"),
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: const Text(
                         " Login",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),

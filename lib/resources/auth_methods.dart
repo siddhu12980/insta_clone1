@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:insta/resources/storage_method.dart';
@@ -13,9 +12,9 @@ class AuthMethods {
     required String username,
     required String password,
     required String bio,
-    required Uint8List file,
+    // required Uint8List file,
   }) async {
-    String res = "some eror";
+    String res = "Signup user error";
 
     try {
       if (email.isNotEmpty ||
@@ -26,10 +25,11 @@ class AuthMethods {
 
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
+        // ignore: avoid_print
         print(cred.user!.uid);
 
-        String photourl = await StorageMethods()
-            .UploadImgToStorage('profilepic', file, false);
+        // String photourl = await StorageMethods()
+        //     .UploadImgToStorage('profilepic', file, false);
 
 //add user to database
 
@@ -41,7 +41,8 @@ class AuthMethods {
           'bio': bio,
           'followers': [],
           'following': [],
-          'photoUrl': photourl,
+          // ignore: prefer_if_null_operators
+          // 'photoUrl': photourl != null ? photourl : ' ',
         });
         res = "sucess";
       }
