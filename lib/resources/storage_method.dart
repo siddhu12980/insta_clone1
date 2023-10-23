@@ -1,13 +1,12 @@
-import 'dart:ffi';
 import 'dart:typed_data';
-
-import 'package:firebase_dart/firebase_dart.dart';
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class StorageMethods {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  // ignore: non_constant_identifier_names
   Future<String> UploadImgToStorage(
       String childname, Uint8List file, bool isPost) async {
     Reference ref =

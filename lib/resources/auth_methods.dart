@@ -12,7 +12,7 @@ class AuthMethods {
     required String username,
     required String password,
     required String bio,
-    // required Uint8List file,
+    required Uint8List file,
   }) async {
     String res = "Signup user error";
 
@@ -20,7 +20,9 @@ class AuthMethods {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
           bio.isNotEmpty ||
-          username.isNotEmpty) {
+          username.isNotEmpty ||
+          // ignore: unnecessary_null_comparison
+          file != null) {
         //register the user
 
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
@@ -28,8 +30,8 @@ class AuthMethods {
         // ignore: avoid_print
         print(cred.user!.uid);
 
-        // String photourl = await StorageMethods()
-        //     .UploadImgToStorage('profilepic', file, false);
+        String photourl = await StorageMethods()
+            .UploadImgToStorage('profilepic', file, false);
 
 //add user to database
 
@@ -41,8 +43,7 @@ class AuthMethods {
           'bio': bio,
           'followers': [],
           'following': [],
-          // ignore: prefer_if_null_operators
-          // 'photoUrl': photourl != null ? photourl : ' ',
+          'photourl': photourl,
         });
         res = "sucess";
       }

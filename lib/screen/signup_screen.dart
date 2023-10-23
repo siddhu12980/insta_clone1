@@ -80,7 +80,7 @@ class _signupScreenState extends State<signupScreen> {
                       bottom: -10,
                       left: 80,
                       child: IconButton(
-                        onPressed: () => selectiamge(),
+                        onPressed: selectiamge,
                         icon: const Icon(Icons.add_a_photo),
                       ))
                 ],
@@ -120,12 +120,11 @@ class _signupScreenState extends State<signupScreen> {
               InkWell(
                 onTap: () async {
                   String res = await AuthMethods().signupuser(
-                    email: _emailController.text,
-                    username: _usernamecontroller.text,
-                    password: _passwordController.text,
-                    bio: _biocontroller.text,
-                    // file: _image!
-                  );
+                      email: _emailController.text,
+                      username: _usernamecontroller.text,
+                      password: _passwordController.text,
+                      bio: _biocontroller.text,
+                      file: _image!);
                   // ignore: avoid_print
                   print(res);
                 },
