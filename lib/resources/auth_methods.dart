@@ -33,7 +33,7 @@ class AuthMethods {
         String photourl = await StorageMethods()
             .UploadImgToStorage('profilepic', file, false);
 
-//add user to database
+        //add user to database
 
         await _firestore.collection('users').doc(cred.user!.uid).set({
           //use .add() without .doc
@@ -45,11 +45,33 @@ class AuthMethods {
           'following': [],
           'photourl': photourl,
         });
+
         res = "sucess";
       }
     } catch (err) {
       res = err.toString();
     }
+    return res;
+  }
+
+  Future<String> loginuser(
+      {required String email, required String password}) async {
+    String res = "login error";
+
+    try {
+      if (email.isNotEmpty || password.isNotEmpty) {
+        await _auth.signInWithEmailAndPassword(
+            //ue can store the user cred
+            email: email,
+            password: password);
+        res = "success";
+      } else {
+        res = "please enter all the fields";
+      }
+    } catch (err) {
+      res = err.toString();
+    }
+
     return res;
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:insta/resources/auth_methods.dart';
 import 'package:insta/utils/color.dart';
 import 'package:insta/widgets/text_input.dart';
+import 'package:insta/utils/utlis.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,6 +24,16 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.dispose();
   }
 
+  void _loginuser() async {
+    String res = await AuthMethods().loginuser(
+        email: _emailController.text, password: _passwordController.text);
+
+    if (res == "success") {
+    } else {
+      showSnackbar(res, context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Flexible(
-              child: Container(),
               flex: 2,
+              child: Container(),
             ),
             SvgPicture.asset(
               'assets/ic_instagram.svg',
@@ -63,9 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 25),
 
             InkWell(
-              onTap: () => print("login tapped"),
+              onTap: () => _loginuser(),
               child: Container(
-                child: Text("login"),
                 width: double.infinity,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(vertical: 14),
@@ -75,6 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   color: blueColor,
                 ),
+                child: const Text("login"),
               ),
             ),
             const SizedBox(
@@ -82,15 +94,15 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
 
             Flexible(
-              child: Container(),
               flex: 2,
+              child: Container(),
             ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text("Create New account"),
                 ),
                 GestureDetector(

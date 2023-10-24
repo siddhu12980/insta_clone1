@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:insta/screen/login_screen.dart';
 import 'package:insta/screen/signup_screen.dart';
 import 'package:insta/utils/color.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       //   mobilescreenlayout: mobilescreenlayout(),
       //   webscreenlayout: webscreenlayout(),
       // ),
-      home: const signupScreen(),
+      home: const LoginScreen(),
     );
   }
 }
