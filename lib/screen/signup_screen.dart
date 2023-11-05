@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta/resources/auth_methods.dart';
+import 'package:insta/screen/login_screen.dart';
 import 'package:insta/utils/color.dart';
 import 'package:insta/utils/utlis.dart';
 import 'package:insta/widgets/text_input.dart';
@@ -38,6 +39,14 @@ class _signupScreenState extends State<signupScreen> {
     setState(() {
       _image = img;
     });
+  }
+
+  void _nagivatetologin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
   }
 
   @override
@@ -159,7 +168,7 @@ class _signupScreenState extends State<signupScreen> {
                   ),
                   GestureDetector(
                     // ignore: avoid_print
-                    onTap: () => print("new_account created"),
+                    onTap: () => _nagivatetologin(),
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: const Text(
