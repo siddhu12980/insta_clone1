@@ -68,6 +68,10 @@ class AuthMethods {
       } else {
         res = "please enter all the fields";
       }
+      // } on FirebaseAuthException catch (e) {
+      //   if (e.code == "user-not-found") {
+      //     print("Please create the user first");
+      //   }
     } catch (err) {
       res = err.toString();
     }
