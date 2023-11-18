@@ -7,8 +7,8 @@ import 'package:insta/screen/login_screen.dart';
 import 'package:insta/utils/color.dart';
 import 'package:insta/utils/utlis.dart';
 import 'package:insta/widgets/text_input.dart';
-import 'package:insta/resources/auth_methods.dart';
 
+// ignore: camel_case_types
 class signupScreen extends StatefulWidget {
   const signupScreen({super.key});
 
