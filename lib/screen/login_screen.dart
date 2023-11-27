@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta/resources/auth_methods.dart';
+import 'package:insta/responsive/mobile_screen_layout.dart';
+import 'package:insta/responsive/responsive_layout_screen.dart';
+import 'package:insta/responsive/web_screen_layout.dart';
 import 'package:insta/screen/signup_screen.dart';
 import 'package:insta/utils/color.dart';
 import 'package:insta/widgets/text_input.dart';
@@ -20,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -35,7 +37,13 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text, password: _passwordController.text);
 
     if (res == "success") {
-      print("conection established");
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const Responsivelayout(
+              webscreenlayout: webscreenlayout(),
+              mobilescreenlayout: mobilescreenlayout()),
+        ),
+      );
     } else {
       // ignore: use_build_context_synchronously
       showSnackbar(res, context);
@@ -130,15 +138,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text("Create New account"),
+                    child: const Text("Create New account"),
                   ),
                   GestureDetector(
                     onTap: () {
                       _navigatetosignup();
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Text("Create New account"),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: const Text("Create New account"),
                     ),
                   ),
                 ],

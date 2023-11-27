@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:insta/model/user.dart' as model;
 import 'package:insta/resources/storage_method.dart';
 
 class AuthMethods {
@@ -35,16 +36,19 @@ class AuthMethods {
 
         //add user to database
 
-        await _firestore.collection('users').doc(cred.user!.uid).set({
-          //use .add() without .doc
-          'username': username,
-          'uid': cred.user!.uid,
-          'email': email,
-          'bio': bio,
-          'followers': [],
-          'following': [],
-          'photourl': photourl,
-        });
+        model.User user1 = model.User(
+            username: username,
+            uid: cred.user!.uid,
+            bio: bio,
+            followers: [],
+            following: [],
+            photourl: photourl,
+            email: email);
+
+        await _firestore
+            .collection('users')
+            .doc(cred.user!.uid)
+            .set(user1.tojson());
 
         res = "sucess";
       }

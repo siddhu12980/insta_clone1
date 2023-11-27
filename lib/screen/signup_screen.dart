@@ -1,8 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta/resources/auth_methods.dart';
+import 'package:insta/responsive/mobile_screen_layout.dart';
+import 'package:insta/responsive/responsive_layout_screen.dart';
+import 'package:insta/responsive/web_screen_layout.dart';
 import 'package:insta/screen/login_screen.dart';
 import 'package:insta/utils/color.dart';
 import 'package:insta/utils/utlis.dart';
@@ -47,6 +52,28 @@ class _signupScreenState extends State<signupScreen> {
         builder: (context) => const LoginScreen(),
       ),
     );
+  }
+
+  void _signupuser() async {
+    String res = await AuthMethods().signupuser(
+        email: _emailController.text,
+        username: _usernamecontroller.text,
+        password: _passwordController.text,
+        bio: _biocontroller.text,
+        file: _image!);
+    // ignore: avoid_print
+    print(res);
+    if (res != "sucess") {
+      showSnackbar(res, context);
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const Responsivelayout(
+              webscreenlayout: webscreenlayout(),
+              mobilescreenlayout: mobilescreenlayout()),
+        ),
+      );
+    }
   }
 
   @override
@@ -127,16 +154,7 @@ class _signupScreenState extends State<signupScreen> {
               const SizedBox(height: 25),
 
               InkWell(
-                onTap: () async {
-                  String res = await AuthMethods().signupuser(
-                      email: _emailController.text,
-                      username: _usernamecontroller.text,
-                      password: _passwordController.text,
-                      bio: _biocontroller.text,
-                      file: _image!);
-                  // ignore: avoid_print
-                  print(res);
-                },
+                onTap: _signupuser,
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
