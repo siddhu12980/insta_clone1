@@ -1,5 +1,3 @@
-import 'dart:js_interop_unsafe';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +13,29 @@ class mobilescreenlayout extends StatefulWidget {
   State<mobilescreenlayout> createState() => _mobilescreenlayoutState();
 }
 
+// ignore: camel_case_types
 class _mobilescreenlayoutState extends State<mobilescreenlayout> {
   String username = "";
+
+  void greet() {
+    print("this is it");
+  }
 
   @override
   Widget build(BuildContext context) {
     model.User user = Provider.of<UserProvider>(context).getUser;
+
     return Scaffold(
-      body: Center(
-        child: Text(" user:$username"),
-      ),
-    );
+        body: Center(
+          child: Text("Mobile user:${user.username}"),
+        ),
+        bottomNavigationBar: TabBar(
+          tabs: [
+            IconButton(
+              onPressed: () => greet(),
+              icon: const Icon(Icons.refresh),
+            )
+          ],
+        ));
   }
 }
