@@ -18,18 +18,50 @@ class mobilescreenlayout extends StatefulWidget {
 // ignore: camel_case_types
 class _mobilescreenlayoutState extends State<mobilescreenlayout> {
   String username = "";
+  int _page = 0;
+  //page controller
+  late PageController pageController;
 
-  void greet() {
-    print("this is it");
+  void navigationtaped(int page) {
+    pageController.jumpToPage(page);
+  }
+
+  void onchange(int page) {
+    setState(() {
+      _page = page;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    pageController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     model.User user = Provider.of<UserProvider>(context).getUser;
-    int _page = 0;
+
     return Scaffold(
-      body: Center(
-        child: Text("Mobile user:${user.username}"),
+      body: PageView(
+        children: [
+          Text("Home"),
+          Text("search"),
+          Text("add"),
+          Text("fav"),
+          Text("account"),
+        ],
+        physics: ScrollPhysics(),
+        controller: pageController,
+        onPageChanged: onchange,
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
@@ -75,6 +107,7 @@ class _mobilescreenlayoutState extends State<mobilescreenlayout> {
             backgroundColor: primaryColor,
           ),
         ],
+        onTap: navigationtaped,
       ),
     );
   }
