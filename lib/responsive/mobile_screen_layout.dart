@@ -59,7 +59,6 @@ class _mobilescreenlayoutState extends State<mobilescreenlayout> {
           Text("fav"),
           Text("account"),
         ],
-        physics: ScrollPhysics(),
         controller: pageController,
         onPageChanged: onchange,
       ),
