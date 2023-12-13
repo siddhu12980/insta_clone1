@@ -37,7 +37,7 @@ class _AddPostState extends State<AddPost> {
                       'https://www.w3schools.com/w3images/avatar2.png'),
                 ),
           Positioned(
-            bottom: -10,
+            bottom: -20,
             left: 80,
             child: IconButton(
               onPressed: selectiamge,
