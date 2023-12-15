@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:insta/home_screen.dart';
 import 'package:insta/providers/user_providers.dart';
 import 'package:insta/utils/color.dart';
+import 'package:insta/utils/dimension.dart';
 import 'package:provider/provider.dart';
 import 'package:insta/model/user.dart' as model;
 
@@ -52,15 +54,9 @@ class _mobilescreenlayoutState extends State<mobilescreenlayout> {
 
     return Scaffold(
       body: PageView(
-        children: [
-          Text("Home"),
-          Text("search"),
-          Text("add"),
-          Text("fav"),
-          Text("account"),
-        ],
         controller: pageController,
         onPageChanged: onchange,
+        children: homeScreenItms,
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
