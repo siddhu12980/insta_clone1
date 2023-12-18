@@ -22,15 +22,54 @@ class _addPostState extends State<addPost> {
     });
   }
 
+  _selectImage(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: const Text("Create a Post"),
+            children: [
+              SimpleDialogOption(
+                child: const Text("Take a Photo"),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  Uint8List file = await pickimage(
+                    ImageSource.camera,
+                  );
+
+                  setState(() {
+                    _image = file;
+                  });
+                },
+              ),
+              SimpleDialogOption(
+                child: const Text("Choose a Photo"),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  Uint8List file = await pickimage(
+                    ImageSource.gallery,
+                  );
+
+                  setState(() {
+                    _image = file;
+                  });
+                },
+              )
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    //     child: IconButton(
-    //   icon: Icon(Icons.file_upload_outlined),
-    //   onPressed: () {
-    //     print("Pressed");
-    //   },
-    // ));
+    return Center(
+      child: IconButton(
+        icon: Icon(Icons.file_upload_outlined),
+        onPressed: () {
+          print("Pressed");
+        },
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -96,6 +135,7 @@ class _addPostState extends State<addPost> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _image != null
                   ? CircleAvatar(
