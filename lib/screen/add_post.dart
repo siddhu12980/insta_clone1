@@ -1,5 +1,7 @@
 import 'dart:typed_data';
+import '';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta/utils/color.dart';
@@ -62,14 +64,14 @@ class _addPostState extends State<addPost> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: IconButton(
-        icon: Icon(Icons.file_upload_outlined),
-        onPressed: () {
-          print("Pressed");
-        },
-      ),
-    );
+    // return Center(
+    //   child: IconButton(
+    //     icon: Icon(Icons.file_upload_outlined),
+    //     onPressed: () {
+    //       print("Pressed");
+    //     },
+    //   ),
+    // );
 
     return Scaffold(
       appBar: AppBar(
