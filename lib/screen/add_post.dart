@@ -58,7 +58,12 @@ class _addPostState extends State<addPost> {
                     _image = file;
                   });
                 },
-              )
+              ),
+              SimpleDialogOption(
+                  child: const Text(" Cancel "),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
             ],
           );
         });
@@ -67,6 +72,7 @@ class _addPostState extends State<addPost> {
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
+    TextEditingController _descriptionController = TextEditingController();
     return _image == null
         ? Center(
             child: IconButton(
@@ -109,8 +115,9 @@ class _addPostState extends State<addPost> {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
-                      child: const TextField(
-                        decoration: InputDecoration(
+                      child: TextField(
+                        controller: _descriptionController,
+                        decoration: const InputDecoration(
                           hintText: "Caption goes here",
                           border: InputBorder.none,
                         ),
