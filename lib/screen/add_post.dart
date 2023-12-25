@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +16,8 @@ class addPost extends StatefulWidget {
 }
 
 class _addPostState extends State<addPost> {
+  final TextEditingController _descriptionController = TextEditingController();
+
   Uint8List? _image;
 
   void selectiamge() async {
@@ -24,6 +25,14 @@ class _addPostState extends State<addPost> {
     setState(() {
       _image = img;
     });
+  }
+
+  void postimage(
+    String uid,
+    String username,
+    String profileimage,
+  ) async {
+    try {} catch (e) {}
   }
 
   _selectImage(BuildContext context) async {
@@ -58,10 +67,22 @@ class _addPostState extends State<addPost> {
                     _image = file;
                   });
                 },
-              )
+              ),
+              SimpleDialogOption(
+                  child: const Text(" Cancel "),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
             ],
           );
         });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _descriptionController.dispose();
   }
 
   @override
@@ -85,7 +106,7 @@ class _addPostState extends State<addPost> {
               centerTitle: false,
               actions: [
                 TextButton(
-                  onPressed: () => {},
+                  onPressed: () => postimage(),
                   child: const Text(
                     "Post",
                     style: TextStyle(
@@ -109,8 +130,9 @@ class _addPostState extends State<addPost> {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
-                      child: const TextField(
-                        decoration: InputDecoration(
+                      child: TextField(
+                        controller: _descriptionController,
+                        decoration: const InputDecoration(
                           hintText: "Caption goes here",
                           border: InputBorder.none,
                         ),

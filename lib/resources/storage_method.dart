@@ -18,4 +18,10 @@ class StorageMethods {
     String downloadurl = await snap.ref.getDownloadURL();
     return downloadurl;
   }
+
+// String photourl = await StorageMethods()
+            // .UploadImgToStorage('profilepic', file, false);
+
+
+
 }
