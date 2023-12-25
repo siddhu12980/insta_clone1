@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +16,8 @@ class addPost extends StatefulWidget {
 }
 
 class _addPostState extends State<addPost> {
+  final TextEditingController _descriptionController = TextEditingController();
+
   Uint8List? _image;
 
   void selectiamge() async {
@@ -24,6 +25,14 @@ class _addPostState extends State<addPost> {
     setState(() {
       _image = img;
     });
+  }
+
+  void postimage(
+    String uid,
+    String username,
+    String profileimage,
+  ) async {
+    try {} catch (e) {}
   }
 
   _selectImage(BuildContext context) async {
@@ -70,9 +79,15 @@ class _addPostState extends State<addPost> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _descriptionController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
-    TextEditingController _descriptionController = TextEditingController();
     return _image == null
         ? Center(
             child: IconButton(
@@ -91,7 +106,7 @@ class _addPostState extends State<addPost> {
               centerTitle: false,
               actions: [
                 TextButton(
-                  onPressed: () => {},
+                  onPressed: () => postimage(),
                   child: const Text(
                     "Post",
                     style: TextStyle(
